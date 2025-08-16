@@ -41,8 +41,4 @@ export class ReservationsService {
   async listForUser(userId: string) {
     return this.repo.find({ where: { user: { id: Number(userId) } }, order: { date: 'ASC' } });
   }
-
-  async listAll() {
-    return this.repo.find({ order: { date: 'ASC' } });
-  }
 }

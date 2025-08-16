@@ -6,7 +6,7 @@ import { User } from '../models/user.entity';
 
 @Injectable()
 export class AuthService {
-  constructor(private users: UsersService, private jwt: JwtService) {}
+  constructor(private users: UsersService) {}
 
   async register(email: string, password: string) {
     const exists = await this.users.findByEmail(email);

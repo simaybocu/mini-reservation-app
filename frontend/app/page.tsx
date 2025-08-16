@@ -5,7 +5,6 @@ import { apiPost } from "../lib/api";
 
 export default function AuthPage() {
   const [tab, setTab] = useState<"login" | "register">("login");
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -41,10 +40,9 @@ export default function AuthPage() {
     setErr(null);
     setInfo(null);
     try {
-      await apiPost("/auth/register", { name, email, password });
+      await apiPost("/auth/register", { email, password });
       setTab("login");
       setInfo("Registration successful, you can now login.");
-      setName("");
       setPassword("");
     } catch (error: any) {
       setErr(error?.message || "Register failed");
@@ -81,8 +79,6 @@ export default function AuthPage() {
         ) : (
           <form onSubmit={doRegister} className="auth-form">
             <h2>Register</h2>
-            <label>Name</label>
-            <input required value={name} onChange={(e) => setName(e.target.value)} />
             <label>Email</label>
             <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
             <label>Password</label>

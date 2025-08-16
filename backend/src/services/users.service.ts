@@ -15,12 +15,4 @@ export class UsersService {
     const u = this.repo.create({ email, passwordHash, isAdmin });
     return this.repo.save(u);
   }
-
-  async findAll() {
-    return this.repo.find();
-  }
-
-  async findById(id: string) {
-    return this.repo.findOne({ where: { id: Number(id) } });
-  }
 }
